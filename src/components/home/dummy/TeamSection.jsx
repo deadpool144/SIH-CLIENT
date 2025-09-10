@@ -6,7 +6,7 @@ const TeamSection = () => {
     { name: 'Dr. Chibugo Lynda', avatar: 'https://placehold.co/80x80/EFEFEF/333?text=CL' },
     { name: 'Dr. Chibugo Lynda', avatar: 'https://placehold.co/80x80/EFEFEF/333?text=CL' },
     { name: 'Dr. Chibugo Lynda', avatar: 'https://placehold.co/80x80/EFEFEF/333?text=CL' },
-    { name: 'Dr. Miracle Kpadonou', avatar: 'https://placehold.co/80x80/EFEFEF/333?text=MK' },
+    { name: 'Dr. Miracle Kpadonou', avatar: 'https://placehold.co/80x80/EFEFEF/333?text=MK'},
     { name: 'Dr. Chibugo Lynda', avatar: 'https://placehold.co/80x80/EFEFEF/333?text=CL' },
     { name: 'Dr. Chibugo Lynda', avatar: 'https://placehold.co/80x80/EFEFEF/333?text=CL' },
     { name: 'Dr. Chibugo Lynda', avatar: 'https://placehold.co/80x80/EFEFEF/333?text=CL' },

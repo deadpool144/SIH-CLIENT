@@ -6,7 +6,7 @@ const HeroSection = () => {
     const heroSliderData = [
   {
     title: 'Welcome Alumni!',
-    image: 'https://placehold.co/1200x500/3B82F6/FFFFFF?text=Welcome+Alumni',
+    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     title: 'Connect & Network',
