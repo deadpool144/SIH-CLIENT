@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setUserDetails, clearUserDetails } from "@/lib/features/authSlice";
 
- const baseURL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:5000"
+ const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 function AuthCheck() {
   const dispatch = useDispatch();

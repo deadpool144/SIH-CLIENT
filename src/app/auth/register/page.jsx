@@ -10,7 +10,7 @@ import { User, Mail, Lock, Eye, EyeOff } from "lucide-react";
 const Register = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:5000";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
