@@ -1,61 +1,83 @@
-'use client';
-import React, { useState } from 'react';
+"use client";
 
-const Navbar = () => {
-    // State for mobile menu
-    const [isOpen, setIsOpen] = useState(false);
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { GraduationCap, User } from "lucide-react";
+import { useSelector } from "react-redux";
 
-    return (
-        <nav className="bg-white p-4 shadow-md sticky top-0 z-50">
-            <div className="max-w-7xl mx-auto flex justify-between items-center">
-                {/* Logo */}
-                <div className="flex-shrink-0">
-                    <a href="#" className="font-bold text-xl text-gray-800">Logo</a>
-                </div>
+const navLinks = [
+  { name: "Home", path: "/" },
+  { name: "Directory", path: "/directory" },
+  { name: "Events", path: "/events" },
+  { name: "Donate", path: "/donate" },
+  { name: "Leaderboard", path: "/leaderboard" },
+  { name: "Posts", path: "/posts" },
+  { name: "Messages", path: "/messages" },
+];
 
-                {/* Desktop Menu */}
-                <div className="hidden md:flex justify-center items-center flex-grow">
-                    <ul className="flex space-x-8">
-                        <li><a href="#" className="text-gray-600 hover:text-blue-500 font-semibold transition-colors">Home</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-blue-500 font-semibold transition-colors">About</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-blue-500 font-semibold transition-colors">Gallery</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-blue-500 font-semibold transition-colors">Events</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-blue-500 font-semibold transition-colors">Search</a></li>
-                    </ul>
-                </div>
+export default function Navbar() {
+  const pathname = usePathname();
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
 
-                {/* Auth Buttons */}
-                <div className="hidden md:flex items-center space-x-2">
-                    <button className="text-gray-600 font-semibold px-4 py-2 rounded-lg hover:bg-gray-100 transition duration-300">Login</button>
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 font-semibold">Sign Up</button>
-                </div>
+  return (
+    <nav
+      className="flex justify-between items-center p-4 px-8 
+                 bg-gray-900/80 backdrop-blur-lg sticky top-0 z-40 
+                 shadow-md border-b border-gray-700/50"
+    >
+      {/* Logo */}
+      <div className="text-xl font-bold flex items-center gap-2">
+        <GraduationCap /> Alumni Portal
+      </div>
 
-                {/* Mobile Menu Button */}
-                <div className="md:hidden flex items-center">
-                    <button onClick={() => setIsOpen(!isOpen)} aria-label="Open menu">
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
-                </div>
-            </div>
+      {/* Navigation Links */}
+      <ul className="hidden md:flex gap-6 list-none m-0 p-0">
+        {navLinks.map((link) => {
+          const isActive = pathname === link.path;
+          return (
+            <li key={link.path}>
+              <Link
+                href={link.path}
+                className={`font-medium transition-colors ${
+                  isActive
+                    ? "text-blue-500 border-b-2 border-blue-500 pb-1"
+                    : "text-white hover:text-blue-500"
+                }`}
+              >
+                {link.name}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
 
-            {/* Mobile Menu */}
-            {isOpen && (
-                 <div className="md:hidden mt-4">
-                     <ul className="flex flex-col space-y-4 items-center">
-                        <li><a href="#" className="text-gray-600 hover:text-blue-500 font-semibold block py-2">Home</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-blue-500 font-semibold block py-2">About</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-blue-500 font-semibold block py-2">Gallery</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-blue-500 font-semibold block py-2">Events</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-blue-500 font-semibold block py-2">Search</a></li>
-                    </ul>
-                    <div className="flex flex-col space-y-2 mt-4 pt-4 border-t border-gray-200">
-                         <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 w-full font-semibold">Login</button>
-                         <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300 w-full font-semibold mt-2">Sign Up</button>
-                    </div>
-                </div>
-            )}
-        </nav>
-    );
-};
-
-export default Navbar;
+      {/* Auth Buttons */}
+      <div className="flex gap-3 items-center">
+        {!isLoggedIn ? (
+          <>
+            <Link
+              href="/auth/login"
+              className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm hover:bg-blue-700 transition-colors"
+            >
+              Login
+            </Link>
+            <Link
+              href="/auth/register"
+              className="px-4 py-2 rounded-lg border border-blue-600 text-blue-600 text-sm hover:bg-blue-600 hover:text-white transition-colors"
+            >
+              Register
+            </Link>
+          </>
+        ) : (
+          <Link
+            href="/profile/me"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-600 text-white text-sm hover:bg-green-700 transition-colors"
+          >
+            <User size={16} />
+            {user?.name ? `Hi, ${user.name}` : "Profile"}
+          </Link>
+        )}
+      </div>
+    </nav>
+  );
+}

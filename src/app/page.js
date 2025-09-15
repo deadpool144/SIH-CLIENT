@@ -1,19 +1,28 @@
-import AboutAndEvents from "@/components/home/dummy/AboutAndEvent";
-import AlumniSpotlight from "@/components/home/dummy/AlumniSpotlight";
-import Gallery from "@/components/home/dummy/Gallery";
-import HeroSection from "@/components/home/dummy/heroSection";
-import TeamSection from "@/components/home/dummy/TeamSection";
+
+import AlumniSpotlight from "@/components/home/AlumniSpotlight";
+import Gallery from "@/components/home/GalleryComponent";
 import Image from "next/image";
+import Hero from "@/components/home/Hero";
+import RecentEvents from "@/components/home/RecentEvents";
+import AlumniDirectory from "@/components/home/AlumniDirectory";
+import Community from "@/components/home/CommunityPost";
+import ChairmanMessage from "@/components/home/MessageBox";
+import ProfileAndConnectCard from "@/components/home/ProfileAndConnectCard";
 
 export default function Home() {
   return (
     <div>
-      this is home page
-      <HeroSection/>
+      this is home page example
+      <Hero/>
+      <ProfileAndConnectCard/>
       <AlumniSpotlight/>
-      <TeamSection/>
-      <AboutAndEvents/>
+      <AlumniDirectory/>
+      <RecentEvents/>
+      <Community/>
       <Gallery/>
+      <ChairmanMessage/>
+
+
     </div>
   );
 }
