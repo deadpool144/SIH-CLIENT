@@ -38,7 +38,7 @@ const LoginApp = () => {
       const response = await axios.post(
         `${baseUrl}/api/auth/login`,
         { email, password },
-        { withCredentials: true }
+        {withCredentials: true}
       );
 
       if (response.data.success && response.data.data) {

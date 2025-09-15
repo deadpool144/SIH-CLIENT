@@ -27,7 +27,7 @@ export default function Navbar() {
     >
       {/* Logo */}
       <div className="text-xl font-bold flex items-center gap-2">
-        <GraduationCap /> Alumni Portal
+        <GraduationCap /> GradLink
       </div>
 
       {/* Navigation Links */}
