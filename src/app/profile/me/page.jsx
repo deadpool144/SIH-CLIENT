@@ -1,9 +1,22 @@
-import React from 'react'
+import ProfileCard from "@/components/profile/ProfileCard";
+import ContactCard from "@/components/profile/ContactCard";
+import RecordsCard from "@/components/profile/RecordsCard";
+import ContributionSection from "@/components/profile/ContributionSection";
+import PostsSection from "@/components/profile/PostsSection";
+import SettingsCard from "@/components/profile/SettingsCard";
+import "@/app/globals.css"; // Tailwind & reset
 
-function page() {
+export default function ProfilePage() {
   return (
-    <div>page this is prifile page</div>
-  )
+    <main className="bg-white min-h-screen py-10">
+      <div className="max-w-5xl mx-auto px-4">
+        <ProfileCard />
+        <ContactCard />
+        <RecordsCard />
+        <ContributionSection />
+        <PostsSection />
+        <SettingsCard />
+      </div>
+    </main>
+  );
 }
-
-export default page
