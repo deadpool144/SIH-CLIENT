@@ -31,7 +31,11 @@ export default function Navbar() {
       >
         {/* Logo */}
         <div className="text-xl font-bold flex items-center gap-2 text-white">
-          <GraduationCap /> GradLink
+          <Link
+            href="/">
+              <GraduationCap /> GradLink
+          </Link>
+          
         </div>
 
         {/* Desktop Navigation */}
