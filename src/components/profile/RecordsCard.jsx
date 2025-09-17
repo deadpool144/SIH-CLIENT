@@ -24,7 +24,7 @@ export default function RecordsCard() {
                 key={idx}
                 className="bg-yellow-400 text-black px-2 py-1 rounded-full text-sm font-semibold"
               >
-                {skill.skill}
+                {skill}
               </span>
             ))}
           </div>
