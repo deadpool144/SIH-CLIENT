@@ -1,23 +1,24 @@
 "use client";
-import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Users, Heart, Award } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function ContributionSection() {
-  // Local state (dummy data for now, replace later with API)
-  const [mentorship, setMentorship] = useState(true);
-  const [donation, setDonation] = useState(true);
-  const [contribution] = useState({
-    lastDonation: "2 months ago",
-    totalDonations: "₹5,000",
-    eventsAttended: 12,
-    leaderRank: 15,
-  });
+  const contribution = useSelector((state) => state.user.user.contribution);
+
+  if (!contribution) return null;
+
+  const [mentorship, setMentorship] = useState(contribution.mentorship || false);
+  const [donation, setDonation] = useState(contribution.donation || false);
+
+  useEffect(() => {
+    setMentorship(contribution.mentorship || false);
+    setDonation(contribution.donation || false);
+  }, [contribution]);
 
   return (
     <div className="bg-[#1e1e1e] p-5 rounded-lg mb-6 shadow-xl">
-      <h2 className="text-xl font-bold mb-5 ">
-        Contribution & Engagement
-      </h2>
+      <h2 className="text-xl font-bold mb-5">Contribution & Engagement</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {/* Mentorship */}
         <div>
@@ -73,19 +74,17 @@ export default function ContributionSection() {
             </label>
             <span
               className={`px-4 py-1 rounded-full text-sm font-medium ${
-                donation
-                  ? "bg-yellow-400 text-black"
-                  : "bg-gray-600 text-white"
+                donation ? "bg-yellow-400 text-black" : "bg-gray-600 text-white"
               }`}
             >
               {donation ? "Active Donor" : "Inactive"}
             </span>
           </div>
           <p className="text-gray-400 text-sm">
-            Last Donation: {contribution.lastDonation}
+            Last Donation: {contribution.lastDonation || "-"}
           </p>
           <p className="text-yellow-400 text-2xl font-bold mt-1">
-            {contribution.totalDonations}
+            {contribution.totalDonations || 0}
           </p>
         </div>
 
@@ -94,7 +93,7 @@ export default function ContributionSection() {
           <div className="p-4 bg-gray-700 rounded-lg text-center">
             <h3 className="text-sm text-gray-300">Events Attended</h3>
             <p className="text-2xl font-bold text-white mt-1">
-              {contribution.eventsAttended}
+              {contribution.eventsAttended || 0}
             </p>
           </div>
           <div className="p-4 bg-gray-700 rounded-lg text-center">
@@ -102,7 +101,7 @@ export default function ContributionSection() {
               <Award size={16} /> Leader Rank
             </h3>
             <p className="text-2xl font-bold text-white mt-1">
-              #{contribution.leaderRank}
+              #{contribution.leaderRank || "-"}
             </p>
           </div>
         </div>

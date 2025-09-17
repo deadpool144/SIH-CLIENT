@@ -1,4 +1,4 @@
-
+import UserProvider from "@/components/UserProvider";
 import ProfileCard from "@/components/profile/ProfileCard";
 import ContactCard from "@/components/profile/ContactCard";
 import RecordsCard from "@/components/profile/RecordsCard";
@@ -8,6 +8,7 @@ import SettingsCard from "@/components/profile/SettingsCard";
 
 export default function ProfilePage() {
   return (
+    <UserProvider>
       <main className="bg-gray-900 min-h-screen py-10">
         <div className="max-w-5xl mx-auto px-4">
           <ProfileCard />
@@ -18,6 +19,6 @@ export default function ProfilePage() {
           <SettingsCard />
         </div>
       </main>
-
+    </UserProvider>
   );
 }

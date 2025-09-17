@@ -19,7 +19,7 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const { isLoggedIn, users } = useSelector((state) => state.auth);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -83,7 +83,7 @@ export default function Navbar() {
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-600 text-white text-sm hover:bg-green-700 transition-colors"
             >
               <User size={16} />
-              {user?.name ? `Hi, ${user.name}` : "Profile"}
+              {users?.name ? `Hi, ${users.name}` : "Profile"}
             </Link>
           )}
         </div>

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -12,15 +12,15 @@ const Register = () => {
   const dispatch = useDispatch();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
-  const [generalError, setGeneralError] = useState('');
+  const [generalError, setGeneralError] = useState("");
 
   const toggleShowPassword = () => setShowPassword(!showPassword);
   const toggleShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
@@ -38,7 +38,7 @@ const Register = () => {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      setGeneralError('');
+      setGeneralError("");
       return;
     }
 
@@ -50,11 +50,15 @@ const Register = () => {
       );
 
       if (response.data.success && response.data.data) {
-        dispatch(setUserDetails({
-          name: response.data.data.firstName,
-          email: response.data.data.email
-        }));
-        router.push("/profile/me");
+        // Save basic user info in Redux
+        dispatch(
+          setUserDetails({
+            name: `${response.data.data.firstName} ${response.data.data.lastName}`,
+            email: response.data.data.email,
+          })
+        );
+        // Redirect to profile completion form page
+        router.push("/userdetail");
       } else {
         setGeneralError(response.data.message);
       }
