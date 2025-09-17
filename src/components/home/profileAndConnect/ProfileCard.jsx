@@ -1,10 +1,13 @@
-'use client';
+"use client";
 
 import { Eye, Edit } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 export default function ProfileCard({ handleMessage }) {
   const router = useRouter();
+  const user = useSelector((state) => state.user.user);
+  const users=useSelector((state)=>state.auth.users);
 
   const viewProfile = () => {
     handleMessage?.("Redirecting to profile page...");
@@ -13,17 +16,19 @@ export default function ProfileCard({ handleMessage }) {
 
   const editProfile = () => {
     handleMessage?.("Opening profile editor...");
-    router.push("/profile/me?edit=true"); // optional query for edit mode
+    router.push("/profile/me?edit=true");
   };
 
   return (
     <section className="bg-slate-900 max-w-2xl mx-auto my-12 p-8 text-center rounded-xl shadow-2xl">
       <img
-        src="https://randomuser.me/api/portraits/women/44.jpg"
-        alt="User"
+        src={user?.profileImage || "https://via.placeholder.com/150"}
+        alt={`${users?.name || "User"}'s profile`}
         className="w-24 h-24 rounded-full object-cover mb-4 mx-auto border-4 border-blue-500"
       />
-      <h2 className="mb-2 text-2xl font-semibold">Welcome Back, John Doe!</h2>
+      <h2 className="mb-2 text-2xl font-semibold">
+        Welcome Back, {users?.name || "User"}!
+      </h2>
       <p className="text-gray-400">Your personalized alumni experience awaits.</p>
       <div className="flex justify-center gap-4 mt-6">
         <button

@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/NavBar";
 import ReduxProvider from "@/lib/ReaduxProvider";
 import AuthCheck from "@/components/AuthCheck";
+import UserFetcher from "@/components/UserProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
+          <UserFetcher/>
           <AuthCheck/>
           <Navbar/>
         {children}
