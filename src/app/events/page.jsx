@@ -8,8 +8,7 @@ export default function EventPage() {
   const [refresh, setRefresh] = useState(false);
 
   return (
-    <div className="bg-stone-800 min-h-screen py-10 px-4">
-      <CreateEventForm onEventCreated={() => setRefresh(!refresh)} />
+    <div className="bg-stone-800 min-h-screen  px-4">
       <EventList refresh={refresh} />
     </div>
   );
