@@ -70,6 +70,8 @@ export default function ProfileFormPage() {
     leaderRank: "",
   });
 
+  const [adharaNumber, setAdharaNumber] = useState(""); //testing adhara number new
+ 
   // cleanup object URL when component unmounts or preview changes
   useEffect(() => {
     return () => {
@@ -227,6 +229,10 @@ export default function ProfileFormPage() {
             <input name="batch" value={formData.batch} onChange={handleChange} placeholder="Batch (e.g. 2022)" className="p-3 rounded bg-gray-800 border border-gray-700" />
             <input name="department" value={formData.department} onChange={handleChange} placeholder="Department (e.g. CSE)" className="p-3 rounded bg-gray-800 border border-gray-700" />
             <input name="role" value={formData.role} onChange={handleChange} placeholder="Role / Designation" className="p-3 rounded bg-gray-800 border border-gray-700" />
+            <input name="adharaNumber" value={adharaNumber} onChange={(e)=>{
+              setAdharaNumber(e.target.value);
+
+            }} placeholder="Adhara Number" className="p-3 rounded bg-gray-800 border border-gray-700" />  
           </div>
         </div>
 
