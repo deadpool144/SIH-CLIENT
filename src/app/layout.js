@@ -4,6 +4,7 @@ import Navbar from "@/components/NavBar";
 import ReduxProvider from "@/lib/ReaduxProvider";
 import AuthCheck from "@/components/AuthCheck";
 import UserFetcher from "@/components/UserProvider";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
           <AuthCheck/>
           <Navbar/>
         {children}
+        <Footer/>
         </ReduxProvider>
         
       </body>
