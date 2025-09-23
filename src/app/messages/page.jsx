@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const BASE = process.env.NEXT_PUBLIC_BASE_URL || "";
+const BASE = process.env.NEXT_PUBLIC_BASE_URL ;
 
 export default function MessagePage() {
   const [users, setUsers] = useState([]);
