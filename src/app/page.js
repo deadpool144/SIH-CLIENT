@@ -8,11 +8,12 @@ import AlumniDirectory from "@/components/home/AlumniDirectory";
 import Community from "@/components/home/CommunityPost";
 import ChairmanMessage from "@/components/home/MessageBox";
 import ProfileAndConnectCard from "@/components/home/ProfileAndConnectCard";
+import Warning from "@/components/Warning";
 
 export default function Home() {
   return (
     <div>
-      this is home page example
+      <Warning/>
       <Hero/>
       <ProfileAndConnectCard/>
       <AlumniSpotlight/>
