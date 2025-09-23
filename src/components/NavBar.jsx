@@ -13,7 +13,7 @@ const navLinks = [
   { name: "Events", path: "/events" },
   { name: "Donate", path: "/donate" },
   { name: "Leaderboard", path: "/leaderboard" },
-  { name: "Posts", path: "/posts" },
+  { name: "JOB Portal", path: "/posts" },
   { name: "Messages", path: "/messages" },
 ];
 

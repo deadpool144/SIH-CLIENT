@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Search } from "lucide-react";
+import HeroImage from "../../../public/hero.jpg";
+import Image from "next/image";
 
 export default function Hero({ handleMessage }) {
   const [query, setQuery] = useState("");
@@ -41,10 +43,11 @@ export default function Hero({ handleMessage }) {
         </div>
       </div>
       <div className="flex-1 flex justify-center mt-10 md:mt-0 md:pl-10">
-        <img
-          src="https://placehold.co/600x400/1e1e24/ffffff?text=Alumni+Connect"
-          alt="Alumni Portal"
-          className="w-full max-w-lg rounded-xl shadow-2xl shadow-blue-500/10"
+        <Image
+          src={HeroImage}
+          alt="Hero Image"
+          className="w-full h-auto max-w-md"
+          priority
         />
       </div>
     </section>

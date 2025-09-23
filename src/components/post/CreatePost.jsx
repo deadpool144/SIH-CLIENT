@@ -59,7 +59,7 @@ export default function CreatePost({ onPostCreated }) {
 
   return (
     <section className="bg-white rounded-xl shadow-lg p-6 w-11/12 max-w-5xl mx-auto my-12 font-sans">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Create New Post</h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-6">Create New Job Post</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <textarea
           className="w-full min-h-[110px] text-lg p-4 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"

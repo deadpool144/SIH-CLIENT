@@ -12,6 +12,26 @@ const Register = () => {
   const dispatch = useDispatch();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
+  // Add state for selected institute
+const [institute, setInstitute] = useState("");
+const [showList, setShowList] = useState(false);
+const institutes = [
+  "University of Lucknow",
+  "Banaras Hindu University",
+  "Jawaharlal Nehru University",
+  "Delhi University",
+  "University of Mumbai",
+  "University of Calcutta",
+  "Anna University",
+  "University of Madras",
+  "Punjab University",
+  "Osmania University",
+];
+
+// Inside your form, above the email input
+
+
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -114,6 +134,41 @@ const Register = () => {
                 {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>}
               </div>
             </div>
+<div className="relative">
+  <input
+    type="text"
+    placeholder="Select or type your institute"
+    value={institute}
+    onChange={(e) => {
+      setInstitute(e.target.value);
+      setShowList(true);
+    }}
+    onBlur={() => setTimeout(() => setShowList(false), 100)} // delay to allow click
+    className="w-full pl-3 pr-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-zinc-300"
+    required
+  />
+
+  {showList && (
+    <ul className="absolute z-10 w-full max-h-40 overflow-y-auto bg-zinc-800 border border-zinc-700 rounded-lg mt-1">
+      {institutes
+        .filter((inst) => inst.toLowerCase().includes(institute.toLowerCase()))
+        .map((inst, index) => (
+          <li
+            key={index}
+            onClick={() => {
+              setInstitute(inst);
+              setShowList(false);
+            }}
+            className="px-3 py-2 hover:bg-zinc-700 cursor-pointer"
+          >
+            {inst}
+          </li>
+        ))}
+    </ul>
+  )}
+
+  {!institute && <p className="text-red-500 text-sm mt-1">Please select or type an institute</p>}
+</div>
 
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
