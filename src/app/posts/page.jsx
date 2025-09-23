@@ -12,7 +12,7 @@ export default function PostsPage() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen py-10">
+    <div className="bg-gray-950 min-h-screen py-10">
       <CreatePost onPostCreated={handlePostCreated} />
       <PostList refresh={refresh} />
     </div>
