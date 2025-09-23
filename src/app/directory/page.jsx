@@ -2,11 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Link from "next/link";
 
-const BASE = process.env.NEXT_PUBLIC_BASE_URL || "";
-
-// SearchBar (unchanged)
+// SearchBar component for filtering alumni
 const SearchBar = ({ onSearch }) => (
   <div className="flex justify-center my-9 px-4">
     <input
@@ -18,9 +15,9 @@ const SearchBar = ({ onSearch }) => (
   </div>
 );
 
-// Alumni Card (unchanged)
+// AlumniCard component to display an individual alumni profile
 const AlumniCard = ({ alumni }) => (
-  <Link href={`/directory/${alumni._id}`}>
+  <a href={alumni._id ? `/directory/${alumni._id}` : '#'}>
     <div className="bg-gray-800 rounded-2xl w-full max-w-xs sm:w-72 p-8 flex flex-col items-center shadow-lg transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer">
       <img
         src={alumni.profile?.profileImage || "/default-avatar.png"}
@@ -40,10 +37,10 @@ const AlumniCard = ({ alumni }) => (
         Connect
       </button>
     </div>
-  </Link>
+  </a>
 );
 
-// New Skeleton Card for loading state
+// New Skeleton Card component for the loading state
 const AlumniCardSkeleton = () => (
     <div className="bg-gray-800 rounded-2xl w-full max-w-xs sm:w-72 p-8 flex flex-col items-center shadow-lg animate-pulse">
       <div className="w-20 h-20 rounded-full bg-gray-700 mb-6"></div>
@@ -56,8 +53,10 @@ const AlumniCardSkeleton = () => (
 
 
 export default function AlumniDirectoryPage() {
+  const BASE = process.env.NEXT_PUBLIC_BASE_URL || "";
   const [alumni, setAlumni] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  // State to track if the data is being loaded.
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -73,6 +72,7 @@ export default function AlumniDirectoryPage() {
       } catch (err) {
         console.error("Error fetching alumni:", err);
       } finally {
+        // Set isLoading to false once the data fetching is complete, regardless of success or failure.
         setIsLoading(false);
       }
     };
@@ -99,10 +99,11 @@ export default function AlumniDirectoryPage() {
           Alumni Directory
         </h1>
         <div className="flex flex-wrap justify-center gap-8 mb-20">
+          {/* Conditional rendering based on the isLoading state */}
           {isLoading ? (
             // Show 8 skeleton cards while loading
             Array.from({ length: 8 }).map((_, index) => (
-                <AlumniCardSkeleton key={index} />
+              <AlumniCardSkeleton key={index} />
             ))
           ) : (
             // Show actual alumni cards once loaded
