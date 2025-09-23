@@ -6,9 +6,7 @@ import Link from "next/link";
 
 const BASE = process.env.NEXT_PUBLIC_BASE_URL || "";
 
-// Navbar
-
-// SearchBar
+// SearchBar (unchanged)
 const SearchBar = ({ onSearch }) => (
   <div className="flex justify-center my-9 px-4">
     <input
@@ -20,7 +18,7 @@ const SearchBar = ({ onSearch }) => (
   </div>
 );
 
-// Alumni Card
+// Alumni Card (unchanged)
 const AlumniCard = ({ alumni }) => (
   <Link href={`/directory/${alumni._id}`}>
     <div className="bg-gray-800 rounded-2xl w-full max-w-xs sm:w-72 p-8 flex flex-col items-center shadow-lg transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer">
@@ -45,9 +43,22 @@ const AlumniCard = ({ alumni }) => (
   </Link>
 );
 
+// New Skeleton Card for loading state
+const AlumniCardSkeleton = () => (
+    <div className="bg-gray-800 rounded-2xl w-full max-w-xs sm:w-72 p-8 flex flex-col items-center shadow-lg animate-pulse">
+      <div className="w-20 h-20 rounded-full bg-gray-700 mb-6"></div>
+      <div className="h-6 w-3/4 bg-gray-700 rounded mb-2"></div>
+      <div className="h-4 w-1/2 bg-gray-700 rounded mb-2"></div>
+      <div className="h-5 w-5/6 bg-gray-700 rounded mb-4"></div>
+      <div className="w-full mt-auto bg-gray-700 rounded-lg h-12"></div>
+    </div>
+);
+
+
 export default function AlumniDirectoryPage() {
   const [alumni, setAlumni] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchAlumni = async () => {
@@ -61,12 +72,15 @@ export default function AlumniDirectoryPage() {
         }
       } catch (err) {
         console.error("Error fetching alumni:", err);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchAlumni();
   }, []);
 
   const handleSearch = (query) => {
+    if (isLoading) return; // Prevent searching while loading
     setFiltered(
       alumni.filter((a) =>
         `${a.user?.firstName} ${a.user?.lastName}`
@@ -85,9 +99,17 @@ export default function AlumniDirectoryPage() {
           Alumni Directory
         </h1>
         <div className="flex flex-wrap justify-center gap-8 mb-20">
-          {filtered.map((alumnus) => (
-            <AlumniCard key={alumnus._id} alumni={alumnus} />
-          ))}
+          {isLoading ? (
+            // Show 8 skeleton cards while loading
+            Array.from({ length: 8 }).map((_, index) => (
+                <AlumniCardSkeleton key={index} />
+            ))
+          ) : (
+            // Show actual alumni cards once loaded
+            filtered.map((alumnus) => (
+              <AlumniCard key={alumnus._id} alumni={alumnus} />
+            ))
+          )}
         </div>
       </main>
     </div>
