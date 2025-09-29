@@ -15,7 +15,10 @@ export default function Home() {
     <div>
       <Warning/>
       <Hero/>
-      <ProfileAndConnectCard/>
+      <div className="bg-gray-800 py-12">
+        <ProfileAndConnectCard/>
+      </div>
+      
       <AlumniSpotlight/>
       <AlumniDirectory/>
       <RecentEvents/>
