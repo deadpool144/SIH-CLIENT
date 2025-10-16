@@ -59,14 +59,15 @@ export default function AlumniDirectoryPage() {
   // State to track if the data is being loaded.
   const [isLoading, setIsLoading] = useState(true);
 
-  if(localStorage.getItem("alumni") && alumni.length === 0) {       // added local storage to reduce loading time
+  
+
+  useEffect(() => {
+    if(localStorage.getItem("alumni") && alumni.length === 0) {       // added local storage to reduce loading time
     const storedAlumni = JSON.parse(localStorage.getItem("alumni"));
     setAlumni(storedAlumni);
     setFiltered(storedAlumni);
     setIsLoading(false);
   }
-
-  useEffect(() => {
     const fetchAlumni = async () => {
       try {
         const res = await axios.get(`${BASE}/api/alumni/all`, {
