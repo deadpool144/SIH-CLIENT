@@ -59,6 +59,13 @@ export default function AlumniDirectoryPage() {
   // State to track if the data is being loaded.
   const [isLoading, setIsLoading] = useState(true);
 
+  if(localStorage.getItem("alumni") && alumni.length === 0) {       // added local storage to reduce loading time
+    const storedAlumni = JSON.parse(localStorage.getItem("alumni"));
+    setAlumni(storedAlumni);
+    setFiltered(storedAlumni);
+    setIsLoading(false);
+  }
+
   useEffect(() => {
     const fetchAlumni = async () => {
       try {
@@ -68,6 +75,7 @@ export default function AlumniDirectoryPage() {
         if (res.data?.data) {
           setAlumni(res.data.data);
           setFiltered(res.data.data);
+          localStorage.setItem("alumni", JSON.stringify(res.data.data));
         }
       } catch (err) {
         console.error("Error fetching alumni:", err);
