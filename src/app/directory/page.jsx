@@ -25,7 +25,7 @@ const AlumniCard = ({ alumni }) => (
         alt={alumni.user?.firstName}
         className="w-20 h-20 rounded-full object-cover mb-6 border-2 border-black"
       />
-      <h3 className="text-xl font-bold mb-1 text-center text-white">
+      <h3 className="text-xl font-bold mb-1 text-center text-white capitalize">
         {alumni.user?.firstName} {alumni.user?.lastName}
       </h3>
       <p className="text-gray-300 text-sm mb-2 text-center">

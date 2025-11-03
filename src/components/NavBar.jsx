@@ -80,7 +80,7 @@ export default function Navbar() {
           ) : (
             <Link
               href="/profile/me"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-600 text-white text-sm hover:bg-green-700 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-600 text-white text-sm hover:bg-green-700 transition-colors capitalize"
             >
               <User size={16} />
               {users?.name ? `Hi, ${users.name}` : "Profile"}

@@ -26,7 +26,7 @@ export default function ProfileCard({ handleMessage }) {
         alt={`${users?.name || "User"}'s profile`}
         className="w-24 h-24 rounded-full object-cover mb-4 mx-auto border-4 border-blue-500"
       />
-      <h2 className="mb-2 text-2xl font-semibold">
+      <h2 className="mb-2 text-2xl font-semibold capitalize">
         Welcome Back, {users?.name || "User"}!
       </h2>
       <p className="text-gray-400">Your personalized alumni experience awaits.</p>
