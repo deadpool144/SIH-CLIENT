@@ -19,6 +19,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "GradLink",
   description: "Alumni connect web app",
+  other: {
+    developer: "Developed by Sujal Kumar and Team AiFrontier",
+  },
 };
 
 export default function RootLayout({ children }) {
