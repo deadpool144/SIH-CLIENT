@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import { useSelector } from "react-redux";
+import ConnectCard from "@/components/home/profileAndConnect/ConnectCard";
 // SearchBar component for filtering alumni
 const SearchBar = ({ onSearch }) => (
   <div className="flex justify-center my-9 px-4">
@@ -51,8 +52,19 @@ const AlumniCardSkeleton = () => (
     </div>
 );
 
+const NotLoggedInComponent=()=>(
+  <div className=" h-screen flex flex-col items-center justify-center w-screen bg-gray-800">
+    <h1 className="text-center text-4xl my-12 font-bold tracking-wider  ">
+      Please log in to view the Alumni Directory
+    </h1>
+    <div>
+      <ConnectCard/>
+    </div>
+  </div>
+);
 
 export default function AlumniDirectoryPage() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const BASE = process.env.NEXT_PUBLIC_BASE_URL || "";
   const [alumni, setAlumni] = useState([]);
   const [filtered, setFiltered] = useState([]);
@@ -98,6 +110,9 @@ export default function AlumniDirectoryPage() {
       )
     );
   };
+  if(!isLoggedIn){
+    return <NotLoggedInComponent/>
+  }
 
   return (
     <div className="bg-black min-h-screen text-white font-sans">
