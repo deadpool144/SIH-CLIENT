@@ -5,7 +5,7 @@ import ReduxProvider from "@/lib/ReaduxProvider";
 import AuthCheck from "@/components/AuthCheck";
 import UserFetcher from "@/components/UserProvider";
 import Footer from "@/components/Footer";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
