@@ -5,6 +5,7 @@ import ReduxProvider from "@/lib/ReaduxProvider";
 import AuthCheck from "@/components/AuthCheck";
 import UserFetcher from "@/components/UserProvider";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
         {children}
         <Footer/>
         </ReduxProvider>
+        <Analytics />
         
       </body>
     </html>
